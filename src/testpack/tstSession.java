@@ -47,7 +47,7 @@ public class tstSession {
        {
     	   Date timeNow= new Date();
     	   long min = getSec(ex.getStartTime(),timeNow);
-    	   System.out.println("min:"+min);
+    	   //System.out.println("min:"+min);
     	   if(min>=60 && min<=120){
     		//   break;  //B
     		    refresh();  //A

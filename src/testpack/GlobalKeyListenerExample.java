@@ -5,8 +5,10 @@ import org.jnativehook.GlobalScreen;
 import org.jnativehook.NativeHookException;
 import org.jnativehook.keyboard.NativeKeyEvent;
 import org.jnativehook.keyboard.NativeKeyListener;
+import org.jnativehook.mouse.NativeMouseEvent;
+import org.jnativehook.mouse.NativeMouseInputListener;
 
-public class GlobalKeyListenerExample implements NativeKeyListener {
+public class GlobalKeyListenerExample implements NativeKeyListener,NativeMouseInputListener {
 	
 	private Date startTime= new Date();;
 	
@@ -46,6 +48,27 @@ public class GlobalKeyListenerExample implements NativeKeyListener {
 	public void nativeKeyTyped(NativeKeyEvent e) {
         System.out.println("Key Typed: " + e.getKeyText(e.getKeyCode()));
     }
+    
+    public void nativeMouseClicked(NativeMouseEvent e) {
+        System.out.println("Mouse Clicked: " + e.getClickCount());
+    }
+
+    public void nativeMousePressed(NativeMouseEvent e) {
+        System.out.println("Mouse Pressed: " + e.getButton());
+    }
+
+    public void nativeMouseReleased(NativeMouseEvent e) {
+        System.out.println("Mouse Released: " + e.getButton());
+    }
+
+    public void nativeMouseMoved(NativeMouseEvent e) {
+        System.out.println("Mouse Moved: " + e.getX() + ", " + e.getY());
+    }
+
+    public void nativeMouseDragged(NativeMouseEvent e) {
+        System.out.println("Mouse Dragged: " + e.getX() + ", " + e.getY());
+    }
+    
 
     public static void main(String[] args) {
         try {
@@ -73,6 +96,8 @@ public class GlobalKeyListenerExample implements NativeKeyListener {
         }
 
         GlobalScreen.addNativeKeyListener(new GlobalKeyListenerExample());
+        GlobalScreen.addNativeMouseListener(new GlobalKeyListenerExample());
+        GlobalScreen.addNativeMouseMotionListener(new GlobalKeyListenerExample());
     }
 
 }
